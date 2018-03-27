@@ -6,8 +6,14 @@
 
 
 -----
-#### 使用
-`npm install` 安装  
-`npm run dev` 开发  
+#### 开发&生产
+`npm install` 安装
+`npm run dev` 开发  
 `npm run build` 生产  
 
+
+#### 使用
+生产后会在dist目录下生成portalPlus文件
+在html页面上引用该文件；  
+在需要进行编辑的标签上添加rc属性（具体属性参考源代注释）；  
+`new PortalPlus()` 实例化后即可解析html；  
