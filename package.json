@@ -1,0 +1,31 @@
+{
+  "name": "portalsdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env BROWSER=none HOST=127.0.0.1 PORT=7200 HTTPS=true roadhog server",
+    "build": "cross-env roadhog build",
+    "build:dll": "roadhog buildDll"
+  },
+  "author": "",
+  "license": "ISC",
+  "pre-commit": [
+    "lint"
+  ],
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-dev-expression": "^0.2.1",
+    "babel-plugin-import": "^1.1.1",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-runtime": "^6.9.2",
+    "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^5.1.3",
+    "eslint": "^4.1.1",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.6.1",
+    "html-webpack-plugin": "^2.29.0",
+    "roadhog": "1.2.2"
+  }
+}

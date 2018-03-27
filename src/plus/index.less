@@ -1,0 +1,254 @@
+@import './assets/iconfont.less';
+
+@bordercolor: #d9d9d9;
+@mainColor: #1890ff;
+@mainColorHover: #40a9ff;
+@mainRadius: 4px;
+
+.NavWrapper{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: @mainColor;
+    border-top-left-radius: @mainRadius;
+    border-bottom-left-radius: @mainRadius;
+    color: #fff;
+    padding: 0;
+    font-size: 12px;
+    a{
+        color: #fff;
+        text-decoration: none;
+    }
+    li{
+        display: inline-block;
+        padding: 5px 10px;
+        border-right: 1px solid fade(#fff, 15%); 
+    }
+}
+
+.EditWrapper{
+    display: block;
+    font-size: 12px;
+    border: 1px dashed @mainColor;
+    position: absolute;
+    box-sizing: border-box;
+    // z-index: 98;
+    .ControlBtn{
+        display: block;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        color: @mainColor;
+        z-index: 88;
+    }
+   
+}
+
+
+
+.ModalWrapper{
+    .Modal{
+        position: absolute;
+        width: 300px;
+        left: 50%;
+        margin-left: -150px;
+        top: 30%;
+        background-color: #fff;
+        border: 1px solid @bordercolor;
+        border-radius: @mainRadius;
+        box-shadow: 1px 1px 25px rgba(0,0,0, .5);
+        z-index: 100;
+        .ModalHead{
+            display: block;
+            padding: 10px;
+            border-bottom: 1px solid @bordercolor;
+            :global{
+                #close{
+                    cursor: pointer;
+                    font-size: 16px;
+                    line-height: 16px;
+                }
+            }
+            &::after{
+                content: ' ';
+                display: block;
+                clear: both;
+                
+            }
+            h4{
+                margin: 0;
+                font-size: 14px;
+                line-height: 16px;
+            }
+            
+            &>*:first-child{
+              float: left;  
+            }
+            &>*:last-child{
+                float: right;
+            }
+        }
+        .ModalContent{
+            padding: 10px;
+        }
+        .ModalFoot{
+            display: block;
+            padding: 10px;
+            border-top: 1px solid @bordercolor;
+            text-align: right;
+            input[type=button],input[type=submit]{
+                padding: 2px 15px;
+                background-color: @mainColor;
+                color: #fff;
+                font-size: 14px;
+                line-height: 1.5em;
+                border: none;
+                border-radius: @mainRadius;
+                text-align: center;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+    }
+    &::before{
+        content: ' ';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0,0,0, .2);
+        z-index: 99;
+    }
+}
+
+.FormItem{
+    *{
+        box-sizing: border-box;
+    }
+    label{
+        font-size: 12px;
+        line-height: 2.6em;
+    }
+    input,textarea{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        position: relative;
+        display: inline-block;
+        padding: 4px 11px;
+        width: 100%;
+        font-size: 14px;
+        line-height: 1.5;
+        color: rgba(0, 0, 0, 0.65);
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid @bordercolor;
+        border-radius: 3px;
+        transition: all .3s;
+        &:focus{
+            border-color: @mainColorHover;
+            outline: 0;
+            box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        }
+        &:hover{
+            border-color: @mainColorHover;
+        }
+        &:input{
+            height: 32px;
+
+        }
+        
+    }
+
+    &.ImageFormItem{
+        
+        .ImagePreview{
+            display: inline-block;
+            width: 100%;
+            height: 100px;
+            padding: 5px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-clip: content-box;
+            border: 1px solid @mainColor;
+            position: relative;
+            text-align: center;
+            &::after{
+                display: block;
+                content: ' ';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background-color: fade(#000, 20%);
+            }
+        }
+        .UploadBtn{
+            color: @mainColor;
+            font-size: 62px;
+            line-height: 88px;
+        }
+    }
+
+}
+
+.Switch{
+    font-family: "Monospaced Number", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.65);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 22px;
+    min-width: 44px;
+    line-height: 20px;
+    vertical-align: middle;
+    border-radius: 100px;
+    border: 1px solid transparent;
+    background-color: rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all 0.36s;
+    user-select: none;
+    &::after{
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        left: 1px;
+        top: 1px;
+        border-radius: 18px;
+        background-color: #fff;
+        content: " ";
+        -webkit-transition: all 0.36s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+        transition: all 0.36s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+        box-shadow: 0 2px 4px 0 rgba(0, 35, 11, 0.2);
+    }
+    .SwitchInner{
+        color: #fff;
+        font-size: 12px;
+        margin-left: 24px;
+        margin-right: 6px;
+        display: block;
+        box-sizing: border-box;
+    }
+    &:global(.checked){
+        background-color: #1890ff;
+            &::after{
+                left: 100%;
+                margin-left: -19px;
+            }
+            .SwitchInner{
+                margin-left: 6px;
+                margin-right: 24px;
+            }
+    }
+}
+
