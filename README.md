@@ -7,7 +7,7 @@
 
 -----
 #### 使用
-npm install 安装
-npm run dev 开发
-npm run build 生产
+`npm install` 安装  
+`npm run dev` 开发  
+`npm run build` 生产  
 
