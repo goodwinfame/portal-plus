@@ -28,7 +28,7 @@ class Component {
         this.$modal = new Modal(this);
 
         //监听点击事件，这里主要处理点击编辑按钮后的弹窗操作
-        this.$body.addEventListener('click', this.onClick.bind(this));
+        this.$plusContainer.addEventListener('click', this.onClick.bind(this));
 
         
     }
@@ -84,7 +84,7 @@ class Component {
          * 将编辑框等元素挂载到body下，避免放在表单元素下可能有遮挡问题。
         */
         this.$el = Utils.createNode(this.$template);
-        this.$body.appendChild(this.$el);
+        this.$plusContainer.appendChild(this.$el);
     }
   
     saved(formFields){

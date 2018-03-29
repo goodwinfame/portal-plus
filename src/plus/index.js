@@ -41,6 +41,9 @@ class PortalPlus {
              * 如果当前可编辑等级为0，则不做操作
             */
             if(this.$editLevel === 0) return;
+
+            this.$plusContainer = Component.prototype.$plusContainer = document.createElement('div');
+            this.$body.appendChild(this.$plusContainer);
             
             /**
              * 获取portal实例信息
