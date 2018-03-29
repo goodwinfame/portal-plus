@@ -2,6 +2,7 @@
  * ******** 工具类 ********
  * 
  * @method createNode 将字符串模板转换为node
+ * @method getParentNode 获取父元素集合
  * @method getOffsetValue 获取元素距离浏览器窗口的上下边距
  * @method getEditNode 获取html中可编辑的元素，判断条件为是否有rc-key属性
  * @method getQueryString 获取url中的query参数
@@ -29,6 +30,14 @@ class Utils {
         const WrapperNode = document.createElement('div');
         WrapperNode.innerHTML = template;
         return WrapperNode.firstElementChild;
+    }
+    static getParentNode(node) {
+        const parentNodeList = [];
+        while(node.parentNode !== null){
+            parentNodeList.push(node.parentNode);
+            node = node.parentNode;
+        }
+        return parentNodeList;
     }
     static getOffsetValue(obj) {
         /**

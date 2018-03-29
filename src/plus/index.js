@@ -36,7 +36,7 @@ class PortalPlus {
             this.$portalId =  Component.prototype.$portalId = portalId || Utils.getQueryString('editLevel');
             this.$body = Component.prototype.$body = document.querySelector('body');
             this.$currentPage = Component.prototype.$currentPage = window.location.pathname.split('.')[0].split('/').pop();
-
+            this.$components = []; //所有component实例
             /**
              * 如果当前可编辑等级为0，则不做操作
             */
@@ -72,7 +72,12 @@ class PortalPlus {
                         if((node.attributes['rc-level'] && node.attributes['rc-level'].value.indexOf(this.$editLevel) < 0)){
                             return;
                         }
-                        new Component(node).render();
+                        /**
+                         * 注册component
+                         * 实例化component时传入可编辑节点及事件回调
+                         * */
+                        this.$components.push(new Component(node, this.subsriber).render())
+                        
                     })
             
                 })
@@ -83,6 +88,15 @@ class PortalPlus {
         return PortalPlus.instance;
         
     }
+    subsriber = (event, source) => {
+        //如果事件为渲染所有组件，则重新渲染所有组件
+        if(event === 'renderAllComponents'){
+            this.$components.forEach(component=>{
+                component.render();
+            })
+        }
+    }
+    
     
   
 }

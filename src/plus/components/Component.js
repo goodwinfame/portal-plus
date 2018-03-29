@@ -4,8 +4,9 @@ import styles from '../index.less'
 import FormItems from '../formItems'
 
 class Component {
-    constructor(node){
+    constructor(node, subscriber){
         this.renderTimer = null;
+        this.subscriber = subscriber;
         if(node){
             this.$node = node;
             //读取并保存rc属性
@@ -20,6 +21,7 @@ class Component {
              window.addEventListener('resize', this.windowResize);
             //挂载
             this.mount();
+            this.listenDomChange();
         }
         /**
          * 子组件有弹窗内容（可以进行编辑操作）
@@ -29,6 +31,37 @@ class Component {
 
         //监听点击事件，这里主要处理点击编辑按钮后的弹窗操作
         this.$plusContainer.addEventListener('click', this.onClick.bind(this));
+
+        
+    }
+    listenDomChange(){
+        /**
+         * 监听当前可编辑节点与其所有父节点的属性变化
+         * 当属性变动时，判断编辑框是否有参考元素
+         * 以此来判断是否隐藏参考框
+         * 属性变化时要重新计算各组件大小及位置
+        */
+        const nodeList = [this.$node].concat(Utils.getParentNode(this.$node));
+
+        nodeList.forEach(node=>{
+            const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;//浏览器兼容
+            const config = { attributes: true }//配置对象
+            const observer = new MutationObserver(mutations => {//构造函数回调
+                mutations.forEach(record => {
+                    if(record.type == "attributes"){//监听属性
+                        if(this.$node.offsetParent){
+                            this.$el.style.visibility = '';
+                        } else {
+                            this.$el.style.visibility = 'hidden';
+                        }
+
+                        this.subscriber && this.subscriber('renderAllComponents', this.$el);
+                    }
+                    
+                });
+            });
+            observer.observe(node, config);
+        })
 
         
     }
@@ -143,7 +176,7 @@ class Component {
            
         }
         
-        return null;
+        return this;
     }
     
    
