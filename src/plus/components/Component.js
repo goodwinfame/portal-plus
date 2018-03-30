@@ -166,8 +166,8 @@ class Component {
             }
 
             this.renderTimer =  window.setTimeout(()=>{
-                this.$el.style.height = this.$node.clientHeight + 'px';
-                this.$el.style.width = this.$node.clientWidth + 'px';
+                this.$el.style.height = this.$node.offsetHeight + 'px';
+                this.$el.style.width = this.$node.offsetWidth + 'px';
                 const offsetValue = Utils.getOffsetValue(this.$node);
                 this.$el.style.top = offsetValue.offsetTop + 'px';
                 this.$el.style.left = offsetValue.offsetLeft + 'px';
